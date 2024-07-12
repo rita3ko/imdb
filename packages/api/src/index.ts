@@ -19,7 +19,7 @@ const movieSchema = z.object({
 })
 
 app.use('/*', cors({
-  origin: ['http://localhost:3000', 'https://localhost:3000', 'https://your-production-frontend-url.com'],
+  origin: ['http://localhost:3000', 'https://localhost:3000', 'https:/imdb.ritakozlov.com'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
   exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
