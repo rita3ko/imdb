@@ -1,0 +1,13 @@
+name = "imdb"
+compatibility_date = "2024-07-11"
+main = "src/index.ts"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "imdb"
+database_id = "fc8debf6-cf23-46d8-9fc7-1c71ce428a59"
+
+#[[d1_databases]]
+#binding = "DB"
+#database_name = "imdb-local"
+#database_id = "6f77ab1a-ade1-45ca-b8ee-ded4d02da0f5"

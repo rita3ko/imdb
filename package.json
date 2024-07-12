@@ -1,0 +1,19 @@
+{
+  "name": "imdb-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=api",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev": "npm run dev:api & npm run dev:frontend",
+    "build:api": "npm run build --workspace=api",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build": "npm run build:api && npm run build:frontend"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
+}

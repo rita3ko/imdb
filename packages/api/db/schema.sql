@@ -1,0 +1,12 @@
+CREATE TABLE movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  synopsis TEXT NOT NULL
+);
+
+CREATE TABLE movie_actors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  movie_id INTEGER,
+  actor_name TEXT NOT NULL,
+  FOREIGN KEY (movie_id) REFERENCES movies(id)
+);

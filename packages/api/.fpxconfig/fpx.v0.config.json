@@ -1,0 +1,6 @@
+{
+  "FPX_PORT": 8788,
+  "FPX_SERVICE_TARGET": "8787",
+  "FPX_SERVICE_NAME": "imdb",
+  "FPX_DATABASE_URL": "file:/Users/ritakozlov/Projects/imdb-monorepo/packages/api/.fpxconfig/fpx.db"
+}
