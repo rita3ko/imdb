@@ -12,10 +12,12 @@
           <li v-for="actor in movie.actors" :key="actor">{{ actor }}</li>
         </ul>
         <div class="mb-4">
-          <h3 class="font-bold mb-2">
-            Average Rating: 
-            {{ averageRating !== null ? `${averageRating.toFixed(1)} / 5` : 'No ratings yet' }}
-          </h3>
+          <h3 class="font-bold mb-2">Average Rating:</h3>
+          <StaticStarRating 
+            :rating="averageRating !== null ? averageRating : 0" 
+            v-if="averageRating !== null"
+          />
+          <p v-else>No ratings yet</p>
         </div>
         <div>
           <h3 class="font-bold mb-2">Rate this movie:</h3>
@@ -35,7 +37,7 @@
 import { ref, onMounted } from 'vue'
 import Button from '@/components/ui/button/Button.vue'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import StarRating from '@/components/ui/star-rating/StarRating.vue'
+import { StarRating, StaticStarRating } from '@/components/ui/star-rating'
 
 const route = useRoute()
 const router = useRouter()

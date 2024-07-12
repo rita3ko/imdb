@@ -8,8 +8,8 @@
           <CardTitle>{{ movie.title }}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p class="truncate">{{ movie.synopsis }}</p>
-          <p class="mt-2">Rating: {{ movie.averageRating.toFixed(1) }} / 5</p>
+          <p class="truncate mb-2">{{ movie.synopsis }}</p>
+          <StaticStarRating :rating="movie.averageRating" />
         </CardContent>
       </Card>
     </div>
@@ -21,6 +21,14 @@
 import { ref, onMounted } from 'vue'
 import Button from '@/components/ui/button/Button.vue'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { StaticStarRating } from '@/components/ui/star-rating'
+
+interface Movie {
+  id: number
+  title: string
+  synopsis: string
+  averageRating: number
+}
 
 interface Movie {
   id: number
@@ -40,7 +48,7 @@ const fetchMovies = async () => {
     for (const movie of moviesData) {
       const ratingResponse = await fetch(`${config.public.apiBaseUrl}/movies/${movie.id}/ratings`)
       const ratingData = await ratingResponse.json()
-      movie.averageRating = ratingData.averageRating
+      movie.averageRating = ratingData.averageRating || 0
     }
     movies.value = moviesData
   } catch (error) {
