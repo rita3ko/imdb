@@ -148,4 +148,39 @@ app.delete('/movies/:id', async (c) => {
   return c.json({ message: 'Movie deleted successfully' }, 200)
 })
 
+// Add a new rating
+app.post('/movies/:id/ratings', async (c) => {
+  const movieId = c.req.param('id')
+  const { userId, rating } = await c.req.json()
+
+  if (!userId || !rating || rating < 1 || rating > 5) {
+    return c.json({ error: 'Invalid rating data' }, 400)
+  }
+
+  try {
+    await c.env.DB.prepare(
+      'INSERT INTO ratings (movie_id, user_id, rating) VALUES (?, ?, ?)'
+    ).bind(movieId, userId, rating).run()
+
+    return c.json({ message: 'Rating added successfully' }, 201)
+  } catch (error) {
+    return c.json({ error: 'Failed to add rating' }, 500)
+  }
+})
+
+// Get average rating for a movie
+app.get('/movies/:id/ratings', async (c) => {
+  const movieId = c.req.param('id')
+
+  try {
+    const result = await c.env.DB.prepare(
+      'SELECT AVG(rating) as averageRating FROM ratings WHERE movie_id = ?'
+    ).bind(movieId).first()
+
+    return c.json({ averageRating: result?.averageRating || 0 })
+  } catch (error) {
+    return c.json({ error: 'Failed to fetch average rating' }, 500)
+  }
+})
+
 export default app

@@ -9,6 +9,7 @@
         </CardHeader>
         <CardContent>
           <p class="truncate">{{ movie.synopsis }}</p>
+          <p class="mt-2">Rating: {{ movie.averageRating.toFixed(1) }} / 5</p>
         </CardContent>
       </Card>
     </div>
@@ -25,6 +26,7 @@ interface Movie {
   id: number
   title: string
   synopsis: string
+  averageRating: number
 }
 
 const movies = ref<Movie[]>([])
@@ -33,7 +35,14 @@ const fetchMovies = async () => {
   const config = useRuntimeConfig()
   try {
     const response = await fetch(`${config.public.apiBaseUrl}/movies`)
-    movies.value = await response.json()
+    const moviesData = await response.json()
+    // Fetch ratings for each movie
+    for (const movie of moviesData) {
+      const ratingResponse = await fetch(`${config.public.apiBaseUrl}/movies/${movie.id}/ratings`)
+      const ratingData = await ratingResponse.json()
+      movie.averageRating = ratingData.averageRating
+    }
+    movies.value = moviesData
   } catch (error) {
     console.error('Error fetching movies:', error)
   }
