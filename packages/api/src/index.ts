@@ -156,6 +156,7 @@ app.post('/movies/:id/ratings', async (c) => {
   if (!userId || !rating || rating < 1 || rating > 5) {
     return c.json({ error: 'Invalid rating data' }, 400)
   }
+  
 
   try {
     await c.env.DB.prepare(
