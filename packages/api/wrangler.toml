@@ -7,6 +7,10 @@ binding = "DB"
 database_name = "imdb"
 database_id = "fc8debf6-cf23-46d8-9fc7-1c71ce428a59"
 
+# wrangler.toml
+[observability]
+enabled = true
+
 #[[d1_databases]]
 #binding = "DB"
 #database_name = "imdb-local"
