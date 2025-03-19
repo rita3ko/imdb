@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-   "scripts": {
+  "scripts": {
     "dev": "wrangler dev src/index.ts",
     "deploy": "wrangler deploy --minify src/index.ts"
   },
@@ -11,7 +11,6 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240529.0",
-    "wrangler": "^3.57.2"
+    "wrangler": "^3.72.2"
   }
 }
-
